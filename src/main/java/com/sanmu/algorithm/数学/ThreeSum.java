@@ -13,7 +13,7 @@ import java.util.List;
 public class ThreeSum {
 
     public static void main(String[] args) {
-
+        System.out.println(solution("-1,0,1,2,-1,-4"));
     }
 
     private static String solution(String line) {
