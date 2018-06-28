@@ -1,5 +1,7 @@
 package com.sanmu.algorithm.数学;
 
+import com.google.gson.Gson;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
