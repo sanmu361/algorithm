@@ -1,6 +1,10 @@
 package com.sanmu.algorithm.LinkedList;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ${DESCRIPTION}
@@ -11,7 +15,7 @@ import com.google.gson.Gson;
 public class StudentQueue {
 
     public static void main(String[] args) {
-        System.out.println(solution("[[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]"));
+        System.out.println(solution("[[4,4],[7,1],[5,0],[6,1],[7,0],[5,2]]"));
     }
 
     private static String solution(String line) {
@@ -23,8 +27,16 @@ public class StudentQueue {
         //qsort(numbers,0,numbers.length - 1);
         bubblesort(numbers,numbers.length);
 
+
+        ArrayList<int[]> numbers1 = Lists.newArrayList();
+
+        for(int i = 0; i < numbers.length; i++){
+            numbers1.add(numbers[i][1],numbers[i]);
+        }
+
+
         // 返回处理后的结果
-        return gson.toJson(numbers);
+        return gson.toJson(numbers1);
     }
 
     private static void qsort(int a[][], int low,int high){
@@ -63,13 +75,17 @@ public class StudentQueue {
         for (j = 0;j < n - 1;j++)
             for (i = 0;i < n - 1 - j;i++)
             {
-                if(compare(a[i],a[i + 1]) == 1)
+                if(!compare1(a[i],a[i + 1]))
                 {
                     temp = a[i];
                     a[i] = a[i + 1];
                     a[i + 1] = temp;
                 }
             }
+    }
+
+    private static boolean compare1(int[] a ,int[] b){
+        return a[0] > b[0] || (a[0] == b[0] && a[1] < b[1]);
     }
 
     private static int compare(int[] a ,int[] b){
