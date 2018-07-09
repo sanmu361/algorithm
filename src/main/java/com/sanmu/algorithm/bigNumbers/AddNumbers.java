@@ -13,7 +13,7 @@ import java.util.List;
 public class AddNumbers {
 
     public static void main(String[] args) {
-        System.out.println(solution("1234567890","987654321"));
+        System.out.println(solution("7625022925148127196027859399571498914361","790786706794530"));
                                     //"11111111100"
     }
 
