@@ -10,15 +10,15 @@ public class Reverse extends AbstractLinkedList {
     @Override
     protected void doSomeThing(Node list) {
 
-        Node newList = null;
-        Node head = list;
+        Node now = list;
+        Node pre = null;
         Node next = null;
 
-        while(head != null){
-            next = head.getNext();
-            head.setNext(newList);
-            newList = head;
-            head = next;
+        while(now != null){
+            next = now.getNext();
+            now.setNext(pre);
+            pre = now;
+            now = next;
         }
     }
 }
