@@ -12,6 +12,18 @@ import java.util.Stack;
  **/
 public class StackToMakeQueue {
     public static void main(String[] args) {
+        StackToMakeQueue.Queue<Integer> queue = new StackToMakeQueue.Queue<Integer>();
+
+        for(int i = 0; i < 10; i++){
+            queue.add(i);
+        }
+
+        System.out.println(queue.peek());
+        queue.add(10);
+        System.out.println(queue.poll());
+        queue.add(11);
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
 
     }
 
