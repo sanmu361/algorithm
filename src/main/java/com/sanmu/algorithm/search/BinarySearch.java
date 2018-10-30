@@ -1,5 +1,9 @@
 package com.sanmu.algorithm.search;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * ${DESCRIPTION}
  *
@@ -9,7 +13,16 @@ package com.sanmu.algorithm.search;
 public class BinarySearch {
 
     public static void main(String[] args) {
+        int A[] = new int[]{1,3};
+        int B[] = new int[]{2,4};
+
+        Arrays.asList(A);
+        Map<String,Object> map = new HashMap<>();
+
+        System.out.println(findMedianSortedArrays(A,B));
+
         System.out.println(solution1("3,4,5,6,7,0,1,2 2"));
+
     }
 
     private static String solution(String line) {
@@ -34,6 +47,44 @@ public class BinarySearch {
         return "-1";
     }
 
+    private int binarySerach(int[] array, int key){
+        int left = 0;
+        int right = array.length - 1;
+
+        while(left <= right){
+            int mid = (left + right) / 2;
+
+            if(array[mid] == key){
+                return mid;
+            }else if(array[mid] < key){
+                left = mid + 1;
+            }else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    private int findFirstEqual(int array[], int key){
+        int left = 0;
+        int right = array.length - 1;
+
+        while(left <= right){
+            int mid = (left + right) / 2;
+            if(array[mid] >= right){
+                right = mid - 1;
+            }else{
+                left = mid + 1;
+            }
+        }
+
+        if(right >= 0 && array[right] == key){
+            return right;
+        }
+
+        return -1;
+    }
+
     private static String solution1(String line) {
         // 在此处理单行数据
         String strs[] = line.split(" ");
@@ -55,13 +106,13 @@ public class BinarySearch {
             if(nums[mid] == targer){
                 return String.valueOf(mid);
             }else if(nums[mid] > targer ){
-                if(targer >= nums[left] || nums[mid] < nums[right]){
+                if(targer >= nums[left]){
                     right = mid - 1;
                 }else{
                     left = mid + 1;
                 }
             }else if(nums[mid] < targer){
-               if(targer <= nums[right] || nums[mid] > nums[left] ){
+               if(targer <= nums[right] ){
                    left = mid + 1;
                }else{
                    right = mid - 1;
@@ -70,5 +121,64 @@ public class BinarySearch {
         }
         // 返回处理后的结果
         return "-1";
+    }
+
+    public static double  findMedianSortedArrays(int[] num1, int[] num2) {
+
+        int m = num1.length;
+        int n = num2.length;
+
+        if(n < m){
+            int temp[] = num1;
+            num1 = num2;
+            num2 = temp;
+
+            int tmp = m;
+            m = n;
+            n = tmp;
+        }
+
+        int iMin = 0,iMax = m,halfIndex = (m + n + 1) / 2;
+
+
+        int i = (iMin + iMax) / 2;
+        int j = halfIndex - i;
+        while(iMin <= iMax){
+
+            if(i > iMin && num1[i -1] > num2[j]){
+                iMax = i - 1;
+            }
+            else if(i < iMax && num2[j - 1] > num1[i]){
+                iMin = i + 1;
+            }else{
+                int maxLeft;
+                if(i == 0){
+                    maxLeft = num2[j - 1];
+                }else if(j == 0){
+                    maxLeft = num1[i - 1];
+                }else{
+                    maxLeft = Math.max(num1[i - 1],num2[j - 1]);
+                }
+
+                if((m + n) % 2 == 1){
+                    return maxLeft;
+                }
+
+                int minRight;
+                if(i == m){
+                    minRight = num2[j];
+                }else if(j == n){
+                    minRight = num1[i];
+                }else{
+                    minRight = Math.min(num1[i],num2[j]);
+                }
+
+                return (maxLeft + minRight) / 2.0;
+            }
+            i = (iMin + iMax) / 2;
+            j = halfIndex - i;
+        }
+
+        return 0.0;
     }
 }

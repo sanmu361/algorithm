@@ -19,7 +19,7 @@ public class Manacher {
 //            System.out.println(solution(line));
 //        }
 
-        System.out.println(solution1("aaaabbaa"));
+        System.out.println(solution2("babad"));
     }
 
     private static int solution(String line){
@@ -116,8 +116,8 @@ public class Manacher {
 
 
         for(int i = 0; i < newLines.length; i++){
-            if(id + nums[i] - 1 >= i){
-                nums[i] = Math.min(nums[2 * id - i],nums[id] - 2 * (i - id));
+            if(id + nums[id] - 1 >= i){
+                nums[i] = Math.min(nums[2 * id - i],nums[id] + id - i);
             }else{
                 nums[i] = 1;
             }
@@ -134,5 +134,50 @@ public class Manacher {
             }
         }
         return nums[id];
+    }
+
+    private static String solution2(String line){
+
+        if(line == null || line.length() == 0){
+            return line;
+        }
+
+        char newLine[] = new char[line.length() * 2];
+
+        for(int i = 0,j = 0; i < line.length(); i++){
+            newLine[j++] = line.charAt(i);
+            newLine[j++] = '#';
+        }
+
+        int p[] = new int[newLine.length];
+        int id = 0;
+
+        for(int i = 0; i < newLine.length; i++){
+            if(id + p[id] - 1 >= i){
+                p[i] = Math.min(p[2 * id - i], id + p[id] - i);
+            }else{
+                p[i] = 1;
+            }
+
+            while(i - p[i] >= 0 && i + p[i] < newLine.length && newLine[i + p[i]] == newLine[i - p[i]] ){
+                p[i]++;
+            }
+            if(p[i] > p[id]){
+                id = i;
+            }
+            if(newLine[i - p[i] + 1] == '#'){
+                p[i]--;
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        for(int i = id - p[id] + 1; i >= 0 && i < id + p[id]; i++ ){
+            if(newLine[i] == '#'){
+                continue;
+            }
+            result.append(newLine[i]);
+        }
+        return result.toString();
+
     }
 }

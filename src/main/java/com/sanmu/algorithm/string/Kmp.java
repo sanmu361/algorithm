@@ -21,12 +21,12 @@ public class Kmp {
 //            System.out.println(solution(t,p));
 //        }
 
-        System.out.println(solution("mi zhizhqpoem"));
+        System.out.println(strStr("hello","ll"));
     }
 
     public static String solution(String t,String p){
 
-        int next[] = new int[p.length()];
+        int next[] = new int[p.length() + 1];
 
         for(int i = 0; i < p.length(); i++) {
             next[i] = 0;
@@ -34,7 +34,7 @@ public class Kmp {
 
         for(int i = 1; i < p.length(); i++){
             int j = i;
-            while(j > i){
+            while(j > 0){
                 j = next[j];
                 if(p.charAt(i) == p.charAt(j)){
                     next[i + 1] = j + 1;
@@ -75,7 +75,7 @@ public class Kmp {
 
         for(int i =1; i < str[0].length(); i++){
             int j = i;
-            while(j > i){
+            while(j > 0){
                 j = next[i];
                 if(str[0].charAt(i) == str[0].charAt(j)){
                     next[i + 1] = j + 1;
@@ -103,5 +103,86 @@ public class Kmp {
 
         // 返回处理后的结果
         return "false";
+    }
+
+    public static int strStr(String haystack, String needle) {
+
+        int[] next = new int[needle.length() + 1];
+
+
+        for(int i = 0; i < next.length; i++){
+            next[i] = 0;
+        }
+
+        for(int i = 1; i < needle.length(); i++){
+            int j = i;
+            while(j > 0){
+                j = next[j];
+                if(needle.charAt(i) == needle.charAt(j)){
+                    next[i + 1] = j + 1;
+                    break;
+                }
+            }
+        }
+
+        for(int i = 0, j = 0; i < haystack.length(); i++){
+            if(j < needle.length() && haystack.charAt(i) == haystack.charAt(j)){
+                j++;
+            }else{
+                while(j > 0){
+                    j = next[j];
+                    if(haystack.charAt(i) == needle.charAt(j)){
+                        j++;
+                        break;
+                    }
+                }
+            }
+            if(j == needle.length()){
+                return i;
+            }
+
+        }
+
+        return -1;
+
+    }
+
+    private static int kmp1(String t, String p){
+        int next[] = new int[p.length() + 1];
+
+        for(int i = 0; i < next.length; i++){
+            next[i] = 0;
+        }
+
+        for(int i = 1; i < p.length(); i++){
+            int j = i;
+            while(j > 0){
+                j = next[j];
+                if(p.charAt(i) == p.charAt(j)){
+                    next[i + 1] = j + 1;
+                }
+            }
+        }
+
+        int num = 0;
+
+        for(int i = 0, j = 0; i < t.length(); i++){
+            if(j < p.length() && t.charAt(i) == p.charAt(j)){
+                j++;
+            }else{
+                while(j > 0){
+                    j = next[j];
+                    if(t.charAt(i) == p.charAt(j)){
+                        j++;
+                        break;
+                    }
+                }
+            }
+
+            if(j == p.length() - 1){
+                num++;
+            }
+        }
+        return num;
     }
 }

@@ -118,6 +118,29 @@ public class Exponentiation {
         return resultStr.toString();
     }
 
+    private static String BigNumMultipy1(String a,String b){
+        StringBuilder num1 = new StringBuilder(a).reverse();
+        StringBuilder num2 = new StringBuilder(b).reverse();
+
+        int temp[] = new int[num1.length() + num2.length()];
+
+        for(int i = 0; i < num1.length(); i ++){
+            for(int j = 0; j < num2.length(); i++){
+                temp[i + j] += (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+            }
+        }
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < num1.length() + num2.length() - 1; i++){
+            result.append(temp[i] % 10);
+            temp[i + 1] += temp[i] / 10;
+        }
+
+        System.out.println(result.reverse().toString());
+
+        return result.reverse().toString();
+    }
+
 
 
 
