@@ -13,15 +13,17 @@ import java.util.Map;
 public class BinarySearch {
 
     public static void main(String[] args) {
-        int A[] = new int[]{1,3};
-        int B[] = new int[]{2,4};
+//        int A[] = new int[]{1,3};
+//        int B[] = new int[]{2,4};
+//
+//        Arrays.asList(A);
+//        Map<String,Object> map = new HashMap<>();
+//
+//        System.out.println(findMedianSortedArrays(A,B));
 
-        Arrays.asList(A);
-        Map<String,Object> map = new HashMap<>();
+        int nums[] ={0,1,2,3,4,5,4,3,2};
 
-        System.out.println(findMedianSortedArrays(A,B));
-
-        System.out.println(solution1("3,4,5,6,7,0,1,2 2"));
+        System.out.println(binarySerach(nums));
 
     }
 
@@ -65,25 +67,130 @@ public class BinarySearch {
         return -1;
     }
 
-    private int findFirstEqual(int array[], int key){
+
+    private static int binarySerach(int[] array){
         int left = 0;
         int right = array.length - 1;
 
         while(left <= right){
             int mid = (left + right) / 2;
-            if(array[mid] >= right){
-                right = mid - 1;
-            }else{
+
+            if((mid > 0 && array[mid] > array[mid - 1]) && (mid < array.length - 1 && array[mid] < array[mid + 1])){
                 left = mid + 1;
+            }else if((mid > 0 && array[mid] < array[mid - 1]) && (mid < array.length - 1 &&  array[mid] > array[mid + 1])){
+                right = mid - 1;
+            }else {
+                return mid;
             }
         }
-
-        if(right >= 0 && array[right] == key){
-            return right;
-        }
-
         return -1;
     }
+
+
+    /**
+     * 1 查找第一个与target相等的元素
+     *
+     * @param arrs
+     * @param target
+     * @return
+     */
+    public static int findFirstEqual(int[] arrs, int target) {
+        int low = 0;
+        int high = arrs.length - 1;
+        int m = 0;
+
+        while(low <= high) {
+            m = low + (high - low) / 2;
+            //只要target小于等于就往左移
+            if(arrs[m] >= target) {
+                high = m - 1;
+            } else {
+                low = m +1;
+            }
+        }
+        if(low < arrs.length && arrs[low] == target) {
+            return low;
+        }
+        return -1;
+    }
+
+    /**
+     * 2 查找最后一个与target相等的元素
+     *
+     * @param arrs
+     * @param target
+     * @return
+     */
+    public static int findLastEqual(int[] arrs, int target) {
+        int low = 0;
+        int high = arrs.length - 1;
+        int m = 0;
+
+        while(low <= high) {
+            m = low + (high - low) / 2;
+            //只要target小于等于就往右移
+            if(arrs[m] <= target) {
+                low = m +1;
+            } else {
+                high = m - 1;
+            }
+        }
+        if(high >= 0 && arrs[high] == target) {
+            return high;
+        }
+        return -1;
+    }
+
+    /**
+     *3 查找最后一个小于target的元素.也就是说返回小于target的最右边元素下标。
+     *
+     * @param arrs
+     * @param target
+     * @return
+     */
+    public static int findLastSmaller(int[] arrs, int target) {
+        int low = 0;
+        int high = arrs.length - 1;
+        int m = 0;
+
+        while(low <= high) {
+            m = low + (high - low) / 2;
+            //条件就是题目中的小于target
+            if(arrs[m] < target) {
+                low = m +1;
+            } else {
+                high = m - 1;
+            }
+        }
+        //返回最右边
+        return high;
+    }
+
+    /**
+     * 4 查找第一个等于或者大于target的元素
+     *
+     * @param arrs
+     * @param target
+     * @return
+     */
+    public static int findFirstEqualLarger(int[] arrs, int target) {
+        int low = 0;
+        int high = arrs.length - 1;
+        int m = 0;
+
+        while(low <= high) {
+            m = low + (high - low) / 2;
+            //条件就是题目中的等于或者大于target
+            if(arrs[m] >= target) {
+                high = m - 1;
+            } else {
+                low = m +1;
+            }
+        }
+        //返回最左边
+        return low;
+    }
+
 
     private static String solution1(String line) {
         // 在此处理单行数据
@@ -122,6 +229,45 @@ public class BinarySearch {
         // 返回处理后的结果
         return "-1";
     }
+
+    public static int search(int[] nums, int targer) {
+
+        int left = 0, right = nums.length - 1, mid;
+        while (left <= right) {
+
+            mid = (left + right) / 2;
+
+            if (nums[mid] == targer) {
+                return mid;
+            } else if( nums[mid] > targer){
+                if(nums[mid] > nums[left] && targer < nums[left]){
+                    left = mid + 1;
+                }else{
+                    right = mid - 1;
+                }
+            }else {
+                if(nums[mid] > nums[left] && targer > nums[left]){
+                    right = mid - 1;
+                }else{
+                    left = mid + 1;
+                }
+            }
+
+//            if(nums[mid] > nums[left]){
+//                if(nums[left] <= targer && targer < nums[mid]){
+//                    right = mid - 1;
+//                }else{
+//                    left = mid + 1;
+//                }
+//            }else{
+//                if(nums[right] >= targer && nums[mid] < targer){
+//
+//                }
+//            }
+        }
+        return -1;
+    }
+
 
     public static double  findMedianSortedArrays(int[] num1, int[] num2) {
 
