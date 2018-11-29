@@ -33,6 +33,7 @@ public class StackToMakeQueue {
         private final Stack<T> stack2 = new Stack<T>();
 
         public boolean add(T t){
+
             while(CollectionUtils.isNotEmpty(stack2)){
                 stack1.push(stack2.pop());
             }

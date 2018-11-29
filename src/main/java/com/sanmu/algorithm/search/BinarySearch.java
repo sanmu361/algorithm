@@ -21,9 +21,11 @@ public class BinarySearch {
 //
 //        System.out.println(findMedianSortedArrays(A,B));
 
-        int nums[] ={0,1,2,3,4,5,4,3,2};
+        int nums[] ={1,6};
 
-        System.out.println(binarySerach(nums));
+        System.out.println(findFirstEqualLarger(nums,5));
+
+        System.out.println(findLastSmaller(nums,5));
 
     }
 
@@ -156,7 +158,7 @@ public class BinarySearch {
         while(low <= high) {
             m = low + (high - low) / 2;
             //条件就是题目中的小于target
-            if(arrs[m] < target) {
+            if(arrs[m] <= target) {
                 low = m +1;
             } else {
                 high = m - 1;
