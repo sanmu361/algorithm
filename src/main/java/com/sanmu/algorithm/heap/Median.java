@@ -29,7 +29,7 @@ public class Median {
 
         int length = (array.length + 1) / 2;
 
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(length,new Comparator<Integer>(){
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(length,new Comparator<Integer>(){
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o1.compareTo(o2);

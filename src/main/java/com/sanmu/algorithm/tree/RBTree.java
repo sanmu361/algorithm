@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
  **/
 public class RBTree<T extends Comparable<T>> {
 
-    private RBNode<T> root;
+    private RBNode<T> root = new RBNode<T>(null);
 
     private AtomicLong size = new AtomicLong(0);
 
@@ -43,7 +43,16 @@ public class RBTree<T extends Comparable<T>> {
     }
 
     public RBNode<T> getRoot() {
-        return root;
+        return root.getLeft();
+    }
+
+    public static void main(String[] args) {
+        RBTree<Integer> tree = new RBTree<Integer>();
+
+        for(int i = 0 ; i < 10; i++){
+            tree.addNode(i);
+        }
+        System.out.println(tree);
     }
 
    public T addNode(T value){

@@ -192,7 +192,7 @@ public class Kmp {
     }
 
     public static List<Integer> findSubstring(String s, String[] words) {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<Integer>();
         if(words.length == 0) {
             return result;
         }
@@ -201,7 +201,7 @@ public class Kmp {
         //len represents the length of words[0]
         int len = words[0].length();
         //Create a hashMap whose key are Strings in words array and values are there appearance times in words array
-        HashMap<String, Integer> hashMap = new HashMap<>();
+        HashMap<String, Integer> hashMap = new HashMap<String,Integer>();
         for(int i = 0; i < num; i++) {
             if(hashMap.containsKey(words[i])) {
                 hashMap.put(words[i], hashMap.get(words[i]) + 1);
@@ -211,7 +211,7 @@ public class Kmp {
         }
         for(int i = 0; i < len; i++) {
             //floating window[left, right - 1]
-            HashMap<String, Integer> window = new HashMap<>();
+            HashMap<String, Integer> window = new HashMap<String,Integer>();
             int left = i;
             int right = i;
             while(right < s.length() - len + 1 && left < s.length() - len * num + 1) {

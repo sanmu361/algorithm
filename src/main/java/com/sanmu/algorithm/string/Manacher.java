@@ -1,6 +1,6 @@
 package com.sanmu.algorithm.string;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * ${DESCRIPTION}
@@ -23,8 +23,11 @@ public class Manacher {
     }
 
     private static int solution(String line){
-
+        ArrayList<Character> set = new ArrayList<Character>();
+        set.clone();
         int length = line.length();
+
+
 
         StringBuilder stringBuilder = new StringBuilder(line);
         for(int i = 0,k = 1; i < length - 1; i++,k = k + 2 ){
@@ -45,6 +48,8 @@ public class Manacher {
             for(k = 1; k < nums[i] && nums[i - k] != nums[i] - k; k++){
                 nums[i + k] = Math.min(nums[i - k],nums[i] - k);
             }
+
+            line.indexOf(line.charAt(1));
             j = Math.max(j- k,0);
         }
 

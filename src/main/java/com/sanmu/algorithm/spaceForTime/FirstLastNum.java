@@ -41,7 +41,7 @@ public class FirstLastNum {
     }
 
     private static String solution1(String line) {
-        TreeSet<Integer> sets = new TreeSet<>();
+        TreeSet<Integer> sets = new TreeSet<Integer>();
         String[] datas = line.split(",");
         for (String data : datas) {
             sets.add(Integer.valueOf(data));

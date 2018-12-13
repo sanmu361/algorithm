@@ -1,5 +1,6 @@
 package com.sanmu.algorithm;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -18,7 +19,7 @@ public class Topk {
         String[] strs = line.split(" ");
         String[] nums = strs[0].split(",");
 
-        TreeMap<String,Integer> map = new TreeMap<>();
+        TreeMap<String,Integer> map = new TreeMap<String,Integer>();
         for(int i = 0; i < nums.length; i++){
             if(map.get(nums[i]) == null){
                 map.put(nums[i],1);
@@ -39,7 +40,7 @@ public class Topk {
         int k = Integer.valueOf(strs[1]);
 
 
-        TreeMap<String,Integer> map1 = new TreeMap<>();
+        TreeMap<String,Integer> map1 = new TreeMap<String,Integer>();
 
         for(int i = 0; i < k; i++){
             map1.put(list.get(i).getKey(),list.get(i).getValue());
@@ -61,5 +62,12 @@ public class Topk {
 
         // 返回处理后的结果
         return stringBuilder.toString();
+
+//        try {
+//            Method  method = Topk.class.getDeclaredMethod("solution", String.class);
+//            method.getParameterAnnotations()
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        }
     }
 }

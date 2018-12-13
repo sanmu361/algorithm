@@ -21,7 +21,7 @@ public class ReversePolishnotation1 {
     public static List<String> transForm(String expre){
         List<String> sb = new ArrayList<String>();
 
-        Stack<String> stack = new Stack<>();
+        Stack<String> stack = new Stack<String>();
 
         expre = expre.replaceAll("(\\D)","o$1o");
 

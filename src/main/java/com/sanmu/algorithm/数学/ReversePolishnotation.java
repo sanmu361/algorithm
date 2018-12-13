@@ -29,8 +29,8 @@ public class ReversePolishnotation {
 
     private static void solutionNums(String line){
 
-        Stack<Character> operators = new Stack<>();
-        Stack<Integer> numbers = new Stack<>();
+        Stack<Character> operators = new Stack<Character>();
+        Stack<Integer> numbers = new Stack<Integer>();
 
         for(int i = 0; i < line.length(); i++){
             if(priorityMap.keySet().contains(line.charAt(i))){
@@ -71,8 +71,8 @@ public class ReversePolishnotation {
 
     }
     private static void solutionTree(String line){
-        Stack<Character> operators = new Stack<>();
-        Stack<Tree> numberStack = new Stack<>();
+        Stack<Character> operators = new Stack<Character>();
+        Stack<Tree> numberStack = new Stack<Tree>();
 
         for(int i = 0; i < line.length(); i++){
             if(priorityMap.keySet().contains(line.charAt(i))){
@@ -131,7 +131,7 @@ public class ReversePolishnotation {
         System.out.println(gson.toJson(tree));
     }
     private static void solutionPolinsh(String line){
-        Stack<Character> operators = new Stack<>();
+        Stack<Character> operators = new Stack<Character>();
         StringBuilder result = new StringBuilder();
 
         for(int i = 0; i < line.length(); i++){

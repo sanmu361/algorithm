@@ -16,12 +16,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ListTest {
 
     public static void main(String[] args) {
-        ArrayList<Integer> temp1 = Lists.newArrayList(1,6);
+        ArrayList<Integer> temp1 = Lists.newArrayList(1,1,6);
 
         List<Integer> temp2 = (ArrayList<Integer>)temp1.clone();
 
 
-        temp1.remove(0);
+        temp1.remove(Integer.valueOf(1));
 
         temp1.add(0,0);
 

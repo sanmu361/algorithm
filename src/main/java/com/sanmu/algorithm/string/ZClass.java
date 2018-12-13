@@ -23,7 +23,7 @@ public class ZClass {
        boolean downUp = false;
        int curRow = 0;
 
-       List<StringBuilder> tempList = new ArrayList<>();
+       List<StringBuilder> tempList = new ArrayList<StringBuilder>();
 
        for(int i = 0; i < tempList.size(); i++){
            tempList.add(new StringBuilder());

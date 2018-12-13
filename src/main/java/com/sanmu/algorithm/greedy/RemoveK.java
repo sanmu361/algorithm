@@ -71,7 +71,7 @@ public class RemoveK {
         // 在此处理单行数据
         long oldValue = Long.parseLong(line.split(",")[0]);
         int k = Integer.parseInt(line.split(",")[1]);
-        ArrayList<Long> arrayList = new ArrayList<>();
+        ArrayList<Long> arrayList = new ArrayList<Long>();
         while (oldValue != 0) {
             arrayList.add(oldValue % 10);
             oldValue = oldValue / 10;
