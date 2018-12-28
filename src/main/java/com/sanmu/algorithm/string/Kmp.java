@@ -191,6 +191,41 @@ public class Kmp {
         return num;
     }
 
+    private static int kmp(String t ,String p){
+        int next[] = new int[p.length() + 1];
+
+        for(int i = 1; i < p.length(); i++){
+            int j = i;
+            while(j > 0){
+                j = next[j];
+                if(p.charAt(i) == p.charAt(j)){
+                    next[i + 1] = j + 1;
+                }
+            }
+        }
+
+        int num = 0;
+
+        for(int i = 0,j = 0; i < t.length(); i++){
+            if(j < p.length() && t.charAt(i) == p.charAt(j)){
+                j++;
+            }else{
+                while(j > 0){
+                    j = next[j];
+
+                    if(t.charAt(i) == p.charAt(j)){
+                        j++;
+                        break;
+                    }
+                }
+            }
+            if(j == p.length() - 1){
+                num++;
+            }
+        }
+        return num;
+    }
+
     public static List<Integer> findSubstring(String s, String[] words) {
         List<Integer> result = new ArrayList<Integer>();
         if(words.length == 0) {

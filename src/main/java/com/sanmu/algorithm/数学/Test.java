@@ -1,5 +1,9 @@
 package com.sanmu.algorithm.数学;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * ${DESCRIPTION}
  *
@@ -11,10 +15,19 @@ public class Test {
     public static void main(String[] args) {
 
 
-        System.out.println(amount(18D,9D));
+//        System.out.println(amount(18D,9D));
+//
+//        System.out.println(uniquePaths(10,10));
 
-        System.out.println(uniquePaths(10,10));
+        List<Integer> list = new ArrayList<Integer>();
 
+//        for(int i = 0; i 《)
+
+        int[] b = {9,3,15,20,7};
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+//        System.out.println(Arrays.copyOfRange());
     }
 
     public static int uniquePaths(int m1, int n1) {

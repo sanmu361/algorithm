@@ -47,6 +47,31 @@ public class ReverseRange {
 
     }
 
+    private static void reverse1(List head,int n,int m){
+        List nHead = head;
+
+        List cur = head;
+        int i = 0;
+        while(i < n - 1){
+            head = cur;
+            cur = cur.getNext();
+            i++;
+        }
+
+        List first = cur;
+        List next = null;
+
+        while(i < m){
+            next = cur.getNext();
+            cur.setNext(head.next);
+            head.setNext(cur);
+            first.next = next;
+            cur = next;
+            i++;
+        }
+
+    }
+
     private static void reverse(List head){
         List cur = head;
         List next = null;
@@ -85,4 +110,5 @@ public class ReverseRange {
             this.next = next;
         }
     }
+
 }

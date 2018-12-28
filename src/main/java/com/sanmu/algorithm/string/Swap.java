@@ -19,9 +19,6 @@ public class Swap {
         String b = "bbbbbbbbbbb";
         swap(a,b);
 
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
-        BlockingQueue<Integer> queue = new SynchronousQueue<Integer>();
-
         System.out.println("a值：" + a + " length:" + a.length());
         System.out.println("b值：" + b + " length:" + b.length());
     }

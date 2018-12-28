@@ -1,8 +1,6 @@
 package com.sanmu.algorithm.tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
 
 /**
  * ${DESCRIPTION}

@@ -1,5 +1,7 @@
 package com.sanmu.algorithm.list;
 
+import com.sanmu.algorithm.LinkedList.ReverseRange;
+
 /**
  * ${DESCRIPTION}
  *
@@ -20,7 +22,7 @@ public class SolutionTest {
                 curNode = curNode.next;
             }
         }
-        System.out.println(reverseBetween1(head,2,4));
+        System.out.println(reverseBetween3(head,2,4));
 
     }
 
@@ -91,12 +93,75 @@ public class SolutionTest {
         return nHead.next;
     }
 
+    public static void reverseBetween2(ListNode head, int m, int n) {
+        int i = 0;
+
+        ListNode cur =head;
+        for(; i < n - 1; i++){
+            head =cur;
+            cur = cur.getNext();
+        }
+
+        ListNode pre = cur;
+        ListNode next = null;
+
+        for(; i < m; i++){
+            next = cur.getNext();
+            cur.setNext(head.getNext());
+            head.setNext(cur);
+            pre.setNext(next);
+            cur = next;
+        }
+    }
+
+    public static ListNode reverseBetween3(ListNode head, int m, int n){
+        int i = 0;
+
+        ListNode nHead = head;
+
+        ListNode cur = head;
+
+        while(i < m - 1){
+            head = cur;
+            cur = cur.next;
+            i++;
+        }
+
+        ListNode first = cur;
+        ListNode next = null;
+
+        while(i < n){
+            next = cur.getNext();
+            cur.setNext(head.next);
+            head.setNext(cur);
+            first.next = next;
+            cur = next;
+            i++;
+        }
+
+        return nHead;
+    }
+
     public static class ListNode {
       public int val;
       public ListNode next;
       public ListNode(int x) { val = x; }
 
+        public int getVal() {
+            return val;
+        }
 
-  }
+        public ListNode getNext() {
+            return next;
+        }
+
+        public void setVal(int val) {
+            this.val = val;
+        }
+
+        public void setNext(ListNode next) {
+            this.next = next;
+        }
+    }
 
 }
