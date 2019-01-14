@@ -186,6 +186,7 @@ public class LCSProblem {
     private static void printAllLcs(int[][] direction, String x, String lcs, int maxSublen, int i, int j) {
         if (i == 0 || j == 0) {
             StringBuilder sb = new StringBuilder(lcs);
+
             lcs = sb.reverse().toString();
             if (lcs.length() == maxSublen) {
                 System.out.println(lcs);
