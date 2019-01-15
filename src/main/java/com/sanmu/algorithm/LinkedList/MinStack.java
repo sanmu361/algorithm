@@ -39,7 +39,6 @@ public class MinStack {
     public int getMin(){
         return minQueue.peek();
     }
-
     public static void main(String[] args) {
         System.out.println(convertToTitle(53));
     }
