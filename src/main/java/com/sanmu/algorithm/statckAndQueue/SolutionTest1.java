@@ -29,7 +29,17 @@ public class SolutionTest1 {
         t1.left = t21;
         t1.right = t22;
 
-        zigzagLevelOrder(t1);
+//        zigzagLevelOrder(t1);
+
+        System.out.println(Integer.toBinaryString(5));
+
+        System.out.println(rangeBitwiseAnd(5,7));
+
+        System.out.println(0&0);
+
+        rightSideView(t1);
+
+        StringBuilder a = new StringBuilder();
 
     }
 
@@ -117,6 +127,62 @@ public class SolutionTest1 {
         }
 
         return result;
+    }
+
+    public static List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
+
+        if(root == null){
+            return result;
+        }
+
+
+        result.add(root.val);
+
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        LinkedList<TreeNode> temp = new LinkedList<TreeNode>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            TreeNode t = queue.pop();
+
+            if(t.left != null){
+                temp.offer(t.left);
+            }
+            if(t.right != null){
+                temp.offer(t.right);
+            }
+
+            if(queue.isEmpty()){
+
+                if(!temp.isEmpty()){
+                    result.add(temp.getLast().val);
+                }
+                queue = temp;
+                temp = new LinkedList();
+            }
+        }
+        return result;
+    }
+
+    public static int rangeBitwiseAnd(int m, int n) {
+        String mS = Integer.toBinaryString(m);
+        String nS = Integer.toBinaryString(n);
+
+        if(mS.length() != nS.length()){
+            return 0;
+        }
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < mS.length(); i++){
+            if(mS.charAt(i) == nS.charAt(i)){
+                result.append(nS.charAt(i));
+            }else{
+                for(;i < mS.length(); i++)
+                    result.append(0);
+                break;
+            }
+        }
+
+        return Integer.parseInt(result.toString(),2);
     }
 }
 
